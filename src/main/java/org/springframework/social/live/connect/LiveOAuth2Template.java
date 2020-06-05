@@ -6,6 +6,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class LiveOAuth2Template extends OAuth2Template  {
                 // Add all default
                 supportedMediaTypes.addAll(converter.getSupportedMediaTypes());
                 // And also handle text/html json returned on POST to /token
-                supportedMediaTypes.add(new MediaType("text", "html", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
+                supportedMediaTypes.add(new MediaType("text", "html", Charset.forName("UTF-8")));
                 ((MappingJackson2HttpMessageConverter)converter).setSupportedMediaTypes(supportedMediaTypes);
             }
         }
